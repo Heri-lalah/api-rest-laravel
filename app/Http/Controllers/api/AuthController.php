@@ -31,8 +31,6 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        $token = $user->createToken('auth_token')->accessToken;
-        dd($token);
         return response(['user'=> $request->name,'token' => $token->token, 'message' => 'User registered successfully']);
     }
 
@@ -56,8 +54,9 @@ class AuthController extends Controller
             return response(['message' => 'User does not exist']);
         }
 
-        $token = auth()->user()->createToken('auth_token')->accessToken;
+        //$token = auth()->user()->createToken('auth_token')->accessToken;
+        $token = $user->createToken('auth_token')->accessToken;
 
-        return response(['message' => 'User authenticated', 'token' => $token->token]);
+        return response(['message' => 'User authenticated', 'token' => $token]);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('article', ArticleController::class);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+Route::resource('article', ArticleController::class)->middleware("auth:api");
