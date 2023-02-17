@@ -20,8 +20,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
-        return response(['data' => new ArticleResource($articles)], 200);
 
+        return new ArticleResource($articles);
     }
 
     /**
