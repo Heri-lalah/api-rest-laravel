@@ -51,7 +51,7 @@ class ArticleController extends Controller
             'user_id' => 1
         ]);
 
-        return response(['article' => new ArticleResource($article)], 201);
+        return new ArticleResource($article);
 
     }
 
@@ -64,7 +64,7 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
 
-        return response(['data' => new ArticleResource($article)]);
+        return new ArticleResource($article);
 
     }
 
